@@ -1,60 +1,82 @@
 <template>
-<div class="container">
-  <Header title="Task tracker"/>
-  <Tasks :tasks="tasks" />
-</div>
+  <div class="container">
+    <Header title="Task tracker" />
+    <AddTask @add-task="addTask" />
+    <Tasks
+      @toggle-reminder="toggleReminder"
+      @delete-task="deleteTask"
+      :tasks="tasks"
+    />
+  </div>
 </template>
 
 <script>
-import Header from './components/Header'
-import Tasks from './components/Tasks'
+import Header from "./components/Header";
+import Tasks from "./components/Tasks";
+import AddTask from "./components/AddTask";
 
 export default {
-  name: 'App',
+  name: "App",
   components: {
     Header,
     Tasks,
+    AddTask,
   },
-data() {
-  return{
-    tasks: []
-  }
-},
-created() {
-  this.tasks=[
-    {
-      id:1,
-      text:'Doctors Appointment',
-      day:'March 1st',
-      reminder:true
+  data() {
+    return {
+      tasks: [],
+    };
+  },
+  methods: {
+    addTask(task) {
+      this.tasks = [...this.tasks, task];
     },
-    {
-      id:2,
-      text:'Restaurant Grill 168',
-      day:'March 22th',
-      reminder:true
+    deleteTask(id) {
+      if (confirm("Are you sure")) {
+        this.tasks = this.tasks.filter((task) => task.id !== id);
+      }
     },
-    {
-      id:3,
-      text:'Coffee Shop',
-      day:'March 29th',
-      reminder:false
-    }
-  ]
-}
-}
+    toggleReminder(id) {
+      this.tasks = this.tasks.map((task) =>
+        task.id === id ? { ...task, reminder: !task.reminder } : task
+      );
+    },
+  },
+  created() {
+    this.tasks = [
+      {
+        id: 1,
+        text: "Doctors Appointment",
+        day: "March 1st",
+        reminder: true,
+      },
+      {
+        id: 2,
+        text: "Restaurant Grill 168",
+        day: "March 22th",
+        reminder: true,
+      },
+      {
+        id: 3,
+        text: "Coffee Shop",
+        day: "March 29th",
+        reminder: false,
+      },
+    ];
+  },
+};
 </script>
 
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Bellota:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Bellota:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap");
 * {
- box-sizing: border-box;
- margin:0;
- padding:0;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
 body {
-  font-family: 'Bellota';
+  font-family: "Bellota";
 }
 
 .container {
@@ -77,8 +99,8 @@ body {
   margin: 5px;
   border-radius: 5px;
   cursor: pointer;
-  text-decoration:none;
+  text-decoration: none;
   font-size: 15px;
-  font-family: 'Bellota';
+  font-family: "Bellota";
 }
 </style>
