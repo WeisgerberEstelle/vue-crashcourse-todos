@@ -13,7 +13,6 @@
         placeholder="Add Day and Time"
       />
     </div>
-    {{ text }}
     <div class="form-control form-control-check">
       <label>Set Reminder</label>
       <input type="checkbox" v-model="reminder" name="reminder" />
