@@ -1,0 +1,22 @@
+{
+  "tasks": [
+    {
+      "id": 1,
+      "text": "Doctors Appointment",
+      "day": "March 1st",
+      "reminder": true
+    },
+    {
+      "id": 2,
+      "text": "Restaurant Grill 190",
+      "day": "March 22th",
+      "reminder": true
+    },
+    {
+      "id": 3,
+      "text": "Coffee Shop",
+      "day": "March 29th",
+      "reminder": false
+    }
+  ]
+}
